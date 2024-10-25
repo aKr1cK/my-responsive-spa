@@ -21,7 +21,7 @@ body.dark-theme {
 
 #root{
   background-color: black;
-  background: radial-gradient(circle,rgb(58,141,223),rgb(16,17,18));
+  /* background: radial-gradient(circle,rgb(58,141,223),rgb(16,17,18)); */
   color: white;
 }
 
@@ -30,6 +30,4 @@ body.dark-theme {
   background-image: -moz-radial-gradient(0,0,256);
 } */
 
-.logo-banner{
-  color: red;
-}
+

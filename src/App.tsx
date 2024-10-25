@@ -8,6 +8,9 @@ import About from './components/About';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
+import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
+import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional Theme applied to the Data Grid
+
 
 function App() {
   const [theme, setTheme] = useState('dark');
