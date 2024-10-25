@@ -26,12 +26,13 @@ const NavbarComponent = ({ toggleTheme, theme }: any) => {
                         <Nav.Link as={Link} to="/home">Home</Nav.Link>
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
                         {/* <Button
-            variant={theme === 'light' ? 'outline-dark' : 'outline-light'}
-            onClick={toggleTheme}
-            className="ms-2"
-          >
-            {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-          </Button> */}
+                                variant={theme === 'light' ? 'outline-dark' : 'outline-light'}
+                                onClick={toggleTheme}
+                                className="ms-2"
+                            >
+                                {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+                            </Button> */
+                        }
                         <CenteredIcon><FaUserCircle size={32} color="white" /></CenteredIcon>
                     </Nav>
                 </Navbar.Collapse> : <></>}
