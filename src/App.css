@@ -21,7 +21,8 @@ body.dark-theme {
 
 #root{
   background-color: black;
-  background-image: radial-gradient(rgb(58,141,223) 0px, rgb(16,17,18) 100%) radial-gradient(rgb(58,141,223) 0px, rgb(16,17,18) 100%)
+  background: radial-gradient(circle,rgb(58,141,223),rgb(16,17,18));
+  color: white;
 }
 
 /* :root.light-theme{
