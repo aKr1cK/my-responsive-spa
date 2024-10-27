@@ -1,12 +1,12 @@
 // src/components/NavbarComponent.js
-import React, { useEffect, useState } from 'react';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { FaRocket, FaUserCircle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import CenteredIcon from './ui/CenteredIcon';
 
-const NavbarComponent = ({ toggleTheme, theme }: any) => {
-    const [isLoggedIn, setLogedIn] = useState(true);
+const NavbarComponent = ({ theme }: any) => {
+    const [isLoggedIn] = useState(true);
 
     useEffect(() => {
         if (!isLoggedIn) {
