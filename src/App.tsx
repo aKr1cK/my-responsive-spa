@@ -10,6 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional Theme applied to the Data Grid
+import { Container } from 'react-bootstrap';
+import Truck from './components/Truck';
 
 
 function App() {
@@ -31,13 +33,16 @@ function App() {
     <div className={`App ${theme}-theme`}>
       <Router>
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
+        <Container className="text-center">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/truck" element={<Truck />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Login />} />
         </Routes>
+        </Container>
         <Footer />
       </Router>
     </div>

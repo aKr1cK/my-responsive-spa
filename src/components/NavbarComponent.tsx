@@ -24,6 +24,7 @@ const NavbarComponent = ({ toggleTheme, theme }: any) => {
                 {isLoggedIn ? <Navbar.Collapse id="navbar-nav">
                     <Nav className="ms-auto">
                         <Nav.Link as={Link} to="/home">Home</Nav.Link>
+                        <Nav.Link as={Link} to="/truck">Truck</Nav.Link>
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
                         {/* <Button
                                 variant={theme === 'light' ? 'outline-dark' : 'outline-light'}
