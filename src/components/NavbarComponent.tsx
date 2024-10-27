@@ -4,6 +4,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { FaRocket, FaUserCircle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import CenteredIcon from './ui/CenteredIcon';
+import logo from '../assets/logo.svg';
 
 const NavbarComponent = ({ theme }: any) => {
     const [isLoggedIn] = useState(true);
@@ -19,7 +20,8 @@ const NavbarComponent = ({ theme }: any) => {
     return (
         <Navbar bg={theme} variant={theme} expand="lg" className="mb-4">
             <Container>
-                <Navbar.Brand><FaRocket size={40} color='green' />&nbsp;&nbsp;&nbsp;&nbsp;<span className='logo-banner'></span>WordGoCargo</Navbar.Brand>
+                <Navbar.Brand>{/*<FaRocket size={40} color='green' />*/}<img src={logo} width={45}
+            height={45}/>&nbsp;&nbsp;&nbsp;&nbsp;<span className='logo-banner'></span>WordGoCargo</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 {isLoggedIn ? <Navbar.Collapse id="navbar-nav">
                     <Nav className="ms-auto">
