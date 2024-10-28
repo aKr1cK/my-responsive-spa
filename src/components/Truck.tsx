@@ -1,7 +1,7 @@
 import { AgGridReact } from 'ag-grid-react';
 import { useMemo, useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
-import { Button, Card,ButtonGroup } from 'react-bootstrap';
+import { Button, Card,ButtonGroup, Container } from 'react-bootstrap';
 import { FaGreaterThan } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
 import Row from 'react-bootstrap/Row';
@@ -20,7 +20,7 @@ const Truck = () => {
         };
     }, []);
     return (
-        <>
+        <Container>
             <div className="text-start">Home&nbsp;&nbsp;<FaGreaterThan />&nbsp;&nbsp;{activeTab}&nbsp;&nbsp;{/*<FaGreaterThan />&nbsp;&nbsp;New Shipment*/}</div>
             <Card className="text-center bg-dark text-white">
                 <Card.Header>
@@ -46,7 +46,7 @@ const Truck = () => {
                     {activeTab == 'New Shipment' && <div>New Shipment</div>}
                 </Card.Body>
             </Card>
-        </>
+        </Container>
     )
 };
 

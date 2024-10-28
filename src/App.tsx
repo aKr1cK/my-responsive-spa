@@ -33,7 +33,6 @@ function App() {
     <div className={`App ${theme}-theme`}>
       <Router>
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
-        <Container className="text-center">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
@@ -42,7 +41,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Login />} />
         </Routes>
-        </Container>
         <Footer />
       </Router>
     </div>
