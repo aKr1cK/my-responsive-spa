@@ -1,5 +1,5 @@
 // src/components/NavbarComponent.js
-import { useEffect, useState } from 'react';
+//import { useState } from 'react';
 import { Navbar, Container, Nav, Dropdown } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,8 +10,10 @@ import { logout } from '../store/authSlice';
 
 
 const NavbarComponent = ({ theme }: any) => {
+    console.log('===NAV LOADED===');
     const navigate = useNavigate();
-    const [isLoggedIn, setLoggedIn] = useState(false);
+    const dispatch = useDispatch();
+    //const [isLoggedIn, setLoggedIn] = useState(false);
     const { isAuthenticated } = useSelector((state: any) => state.auth);
 
     // useEffect(() => {
@@ -20,6 +22,10 @@ const NavbarComponent = ({ theme }: any) => {
     //         navigate('/login', { replace: true });
     //     }
     // }, []);
+    const goToLogin = () =>{
+        dispatch(logout());
+        navigate('/login', { replace: true });
+    }
 
     return (
         <Navbar bg={theme} variant={theme} expand="lg">
@@ -34,11 +40,11 @@ const NavbarComponent = ({ theme }: any) => {
                                 <Nav.Link as={Link} to="/truck">Truck</Nav.Link>
                                 <Nav.Link as={Link} to="/about">About</Nav.Link>
                                 <Dropdown>
-                                    <Dropdown.Toggle id="dropdown-basic">
+                                    <Dropdown.Toggle id="dropdown-basic" style={{background:'Transparent', border: 'none'}}>
                                         <CenteredIcon><FaUserCircle size={32} color="white" /></CenteredIcon>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => { logout(); navigate('/login', { replace: true }); setLoggedIn(true); }}>Logout</Dropdown.Item>
+                                        <Dropdown.Item onClick={()=>goToLogin()}>Logout</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </>

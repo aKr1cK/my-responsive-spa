@@ -11,12 +11,12 @@ import Login from './components/Login';
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional Theme applied to the Data Grid
 import Truck from './components/Truck';
-//import { Provider, useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 function App() {
   //const dispatch = useDispatch();
-  //const { isAuthenticated } = useSelector((state: any) => state?.auth)
+  const { isAuthenticated } = useSelector((state: any) => state?.auth)
   const [theme, setTheme] = useState('dark');
 
   // Toggle between light and dark themes
@@ -37,9 +37,9 @@ function App() {
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/truck" element={<Truck />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/home" element={isAuthenticated? <Home /> : <Login />} />
+          <Route path="/truck" element={ isAuthenticated? <Truck /> : <Login />} />
+          <Route path="/about" element={ isAuthenticated? <About /> : <Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Login />} />
         </Routes>

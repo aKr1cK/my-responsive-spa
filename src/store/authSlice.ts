@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { useNavigate } from 'react-router-dom';
 
 const initialState = {
   isAuthenticated: false,
@@ -28,7 +27,8 @@ export const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false
-      state.user = null
+      state.user = null;
+      console.log('LOGGED OUT');
     }
   }
 })
