@@ -2,8 +2,14 @@ import { useState } from 'react';
 import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../store/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  console.log('REFRESH');
+  const dispatch = useDispatch();
+ 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,9 +26,9 @@ const Login = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    dispatch(loginSuccess(email));
+    const navigate = useNavigate();
+    navigate('/home', { replace: true });
   };
 
   return (
@@ -51,7 +57,6 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Group>
-
             <Form.Group controlId="formPassword" className="mb-4">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -61,7 +66,6 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
-
             <Button variant="primary" type="submit">
               Login
             </Button>

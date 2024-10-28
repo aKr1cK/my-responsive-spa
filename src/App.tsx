@@ -11,9 +11,12 @@ import Login from './components/Login';
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional Theme applied to the Data Grid
 import Truck from './components/Truck';
+//import { Provider, useDispatch, useSelector } from 'react-redux';
 
 
 function App() {
+  //const dispatch = useDispatch();
+  //const { isAuthenticated } = useSelector((state: any) => state?.auth)
   const [theme, setTheme] = useState('dark');
 
   // Toggle between light and dark themes
