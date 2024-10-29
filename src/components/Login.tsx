@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
@@ -9,19 +9,16 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   console.log('===LOGIN LOADED===');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  useEffect(()=>{
-    //dispatch(logout());
-  },[]);
 
   const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 77vh;
+    height: 100vh;
     background: radial-gradient(#0d6efd, transparent);
     .card{
       width: 450px;
@@ -33,9 +30,8 @@ const Login = () => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(loginSuccess(email));
-    const navigate = useNavigate();
     setTimeout(()=>{
-      navigate('/truck', { replace: true });
+      navigate('/home', { replace: true });
     });
   };
 

@@ -13,15 +13,8 @@ const NavbarComponent = ({ theme }: any) => {
     console.log('===NAV LOADED===');
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    //const [isLoggedIn, setLoggedIn] = useState(false);
     const { isAuthenticated } = useSelector((state: any) => state.auth);
 
-    // useEffect(() => {
-    //     if (!isAuthenticated) {
-    //         const navigate = useNavigate();
-    //         navigate('/login', { replace: true });
-    //     }
-    // }, []);
     const goToLogin = () =>{
         dispatch(logout());
         navigate('/login', { replace: true });
