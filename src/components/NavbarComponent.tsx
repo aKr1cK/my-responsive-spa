@@ -15,7 +15,7 @@ const NavbarComponent = ({ theme }: any) => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state: any) => state.auth);
 
-    const goToLogin = () =>{
+    const goToLogin = () => {
         dispatch(logout());
         navigate('/login', { replace: true });
     }
@@ -32,12 +32,12 @@ const NavbarComponent = ({ theme }: any) => {
                                 <Nav.Link as={Link} to="/home">Home</Nav.Link>
                                 <Nav.Link as={Link} to="/truck">Truck</Nav.Link>
                                 <Nav.Link as={Link} to="/about">About</Nav.Link>
-                                <Dropdown>
-                                    <Dropdown.Toggle id="dropdown-basic" style={{background:'Transparent', border: 'none'}}>
+                                <Dropdown data-bs-theme={theme}>
+                                    <Dropdown.Toggle id="dropdown-basic" style={{ background: 'Transparent', border: 'none' }}>
                                         <CenteredIcon><FaUserCircle size={32} color="white" /></CenteredIcon>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={()=>goToLogin()}>Logout</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => goToLogin()}>Logout</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </>

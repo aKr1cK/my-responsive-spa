@@ -32,18 +32,19 @@ function App() {
   }, []);
 
   return (
+
     <div className={`App ${theme}-theme`}>
       <Router>
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={isAuthenticated? <Home /> : <Login />} />
-          <Route path="/truck" element={ isAuthenticated? <Truck /> : <Login />} />
+          <Route path="/truck" element={ isAuthenticated? <Truck theme={theme} /> : <Login />} />
           <Route path="/about" element={ isAuthenticated? <About /> : <Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Login />} />
         </Routes>
-        <Footer />
+        <Footer theme={theme}/>
       </Router>
     </div>
   );

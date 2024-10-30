@@ -1,10 +1,11 @@
+import { Container } from "react-bootstrap";
+
 // src/components/Home.j
 const Home = () => {
-  console.log('===HOME LOADED===');
   return (
-    <>
-      <div>Welcome Home</div>
-    </>
+    <Container>
+      <div style={{display:'flex',justifyContent:'center'}}>Welcome Home</div>
+    </Container>
   )
 };
 

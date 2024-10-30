@@ -31,7 +31,7 @@ const Login = () => {
     e.stopPropagation();
     dispatch(loginSuccess(email));
     setTimeout(()=>{
-      navigate('/home', { replace: true });
+      navigate('/truck', { replace: true });
     });
   };
 

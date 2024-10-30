@@ -22,6 +22,7 @@ body.dark-theme {
 #root{
   background-color: black;
   color: white;
+  user-select: none;
 }
 
 /* :root.light-theme{
@@ -31,6 +32,10 @@ body.dark-theme {
 
 #dropdown-basic::after{
   display: none !important;
+}
+
+.darkGreenBg{
+  background-color: #20707D;
 }
 
 

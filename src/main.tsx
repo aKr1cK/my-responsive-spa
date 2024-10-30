@@ -4,11 +4,16 @@ import './index.css'
 import App from './App.tsx';
 import { store } from "./store/store.ts";
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { GlobalProvider } from './context/GlobalProvider.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <GlobalProvider>
+      <ToastContainer></ToastContainer>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </GlobalProvider>
   </StrictMode>
 );
