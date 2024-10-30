@@ -34,7 +34,7 @@ const NavbarComponent = ({ theme }: any) => {
                                 <Nav.Link as={Link} to="/about">About</Nav.Link>
                                 <Dropdown data-bs-theme={theme}>
                                     <Dropdown.Toggle id="dropdown-basic" style={{ background: 'Transparent', border: 'none' }}>
-                                        <CenteredIcon><FaUserCircle size={32} color="white" /></CenteredIcon>
+                                        <CenteredIcon><FaUserCircle size={32} color={theme == 'dark'? "white":"black"} /></CenteredIcon>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={() => goToLogin()}>Logout</Dropdown.Item>

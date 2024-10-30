@@ -35,7 +35,7 @@ const Truck = ({ theme }: any) => {
             <div className="text-start p-2 darkGreenBg">
                 Home&nbsp;&nbsp;<FaGreaterThan />&nbsp;&nbsp;{activeTab}
             </div>
-            <Card className="bg-dark text-white">
+            <Card className={theme == 'dark' ? "bg-dark text-white" : "bg-light"}>
                 <Card.Header>
                     <Row>
                         <Col xs={1} lg={1} sm={1}>
@@ -51,7 +51,7 @@ const Truck = ({ theme }: any) => {
                 </Card.Header>
                 <Card.Body>
                     {activeTab == 'Shipment List' && <>
-                        <div className="ag-theme-alpine-dark pt-2" style={{ height: 900 }}>
+                        <div className={theme == "dark" ? "ag-theme-alpine-dark pt-2" : "ag-theme-alpine pt-2"} style={{ height: 900 }}>
                             <AgGridReact rowData={rowData} columnDefs={colDefs} rowSelection={rowSelection} />
                         </div>
                     </>}
