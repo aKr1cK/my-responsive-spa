@@ -1,8 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice';
+import { loadState, saveState } from './sessionStorage';
 
-export const store = configureStore({
+const preloadedState = loadState();
+
+export  const store = configureStore({
   reducer: {
-    auth: authReducer
-  }
+    auth: authReducer,
+  } as any,
+  preloadedState
+})
+
+store.subscribe(()=>{
+  saveState(store.getState());
 })
