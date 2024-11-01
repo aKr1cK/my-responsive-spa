@@ -9,7 +9,7 @@ export const GlobalContext = React.createContext({} as any);
 export const GlobalProvider = ({ children }: any) => {
     let [loading, setLoading] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let [color, setColor] = useState("#0A3A44");
+    let [color] = useState("#0A3A44");
     const override: CSSProperties = {
         margin: "0 auto",
         borderColor: "#0A3A44",
