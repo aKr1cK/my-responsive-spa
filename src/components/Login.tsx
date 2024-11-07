@@ -5,14 +5,13 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
-  console.log('===LOGIN LOADED===');
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [email] = useState('');
 
   const Wrapper = styled.div`
     display: flex;
@@ -25,12 +24,16 @@ const Login = () => {
     }
   `;
 
-  const handleSubmit = (e: any) => {
-    console.log('HANDLE SUBMIT');
-    e.preventDefault();
-    e.stopPropagation();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      formEmail: "",
+      formPassword: "",
+    }
+  });
+
+  const onSubmit = () => {
     dispatch(loginSuccess(email));
-    setTimeout(()=>{
+    setTimeout(() => {
       navigate('/truck', { replace: true });
     });
   };
@@ -51,14 +54,13 @@ const Login = () => {
           Login
         </Card.Header>
         <Card.Body>
-          <Form onSubmit={handleSubmit} className="mb-3">
+          <Form onSubmit={handleSubmit(onSubmit)} className="mb-3">
             <Form.Group controlId="formEmail" className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Please Enter email"
+                {...register('formEmail', { required: true })}
               />
             </Form.Group>
             <Form.Group controlId="formPassword" className="mb-4">
@@ -66,8 +68,7 @@ const Login = () => {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register('formPassword', { required: true })}
               />
             </Form.Group>
             <Button variant="primary" type="submit">

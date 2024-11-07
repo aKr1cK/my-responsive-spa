@@ -10,7 +10,6 @@ import { logout } from '../store/authSlice';
 
 
 const NavbarComponent = ({ theme }: any) => {
-    console.log('===NAV LOADED===');
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state: any) => state.auth);

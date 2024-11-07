@@ -1,72 +1,94 @@
 import { useForm } from 'react-hook-form';
 import { Container, Row, Col, Form, Button, CardHeader, Card, CardBody } from 'react-bootstrap';
 import { ToastMsgType, useGlobalContext } from '../context/GlobalProvider';
+import { useEffect } from 'react';
+import { addShipment, editShipment } from '../store/authSlice';
+import { useDispatch } from 'react-redux';
 
-const NewShipment = ({ theme }: any) => {
+const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipment }: any) => {
     const { showToastMsg, setLoading } = useGlobalContext();
+    const dispatch = useDispatch();
+    let def = {
+        shipmentId:"0",
+        fileNo: "",
+        mblNo: "",
+        quotationNo: "",
+        consignee: "",
+        postDate: "",
+        office: "",
+        customer: "",
+        trucker: "",
+        vesselFlightNo: "",
+        customerRefNo: "",
+        billTo: "",
+        type: "Trucker",
+        shipType: "",
+        carrierBkgNo: "",
+        shipper: "",
+        sales: "",
+        portOfLoading: "",
+        portOfDischarge: "",
+        finalDestination: "",
+        etd: "",
+        finalEta: "",
+        eta: "",
+        emptyPickup: "",
+        freightPickup: "",
+        deliveryTo: "",
+        emptyReturn: "",
+        packageType: "",
+        packageWeight: 0,
+        measurement: "",
+        delivered: false,
+        estimatedDeliveryDate: "",
+        isMyShipment: true
+    };
+
+    const { register,reset,getValues, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: def
+    });
+
+    useEffect(()=>{
+        if(selectedShipment?.shipmentId){
+            reset({...selectedShipment})
+        }
+    },[]);
+    
     const options = {
         offices: ['CHI', 'NYC', 'LAX', 'MIA', 'HOU'],
         customers: ['APPLE', 'SAMSUNG', 'MICROSOFT', 'DELL', 'HP', 'LENOVO', 'ASUS', 'ACER', 'TOSHIBA', 'LG', 'SONY', 'PANASONIC', 'INTEL', 'AMD', 'NVIDIA', 'QUALCOMM', 'WESTERN DIGITAL', 'SEAGATE', 'CISCO', 'JUNIPER', 'XIAOMI', 'HUAWEI', 'OPPO', 'VIVO', 'REALME', 'TCL', 'MOTOROLA', 'ONEPLUS', 'ZTE', 'BLACKBERRY'],
         deliveredTo:['Chicago Warehouse', 'Seattle Distribution Center', 'Bay Area Facility', 'LA Distribution Hub', 'Tacoma Warehouse', 'Portland Facility', 'SF Tech Center', 'Seattle Tech Hub', 'LA Tech Center', 'Oakland Distribution', 'Long Beach Hub', 'Tacoma Port Facility', 'Seattle Tech Center', 'LA Distribution', 'Oakland Tech Hub', 'Portland Center', 'Tacoma Facility', 'Long Beach Center', 'Seattle Hub', 'Oakland Facility', 'LA Tech Park', 'Seattle Complex', 'Tacoma Center', 'Portland Hub', 'Long Beach Terminal', 'Oakland Complex', 'Seattle Distribution', 'Tacoma Logistics', 'Portland Terminal'],
         truckers: ['NELSON', 'MARTINEZ', 'WILSON', 'ANDERSON', 'THOMPSON', 'GARCIA', 'RODRIGUEZ', 'BROWN', 'DAVIS', 'TAYLOR', 'HARRIS', 'CLARK', 'LEWIS', 'ROBINSON', 'WHITE', 'MOORE', 'JACKSON', 'MARTIN', 'THOMAS'],
         shipTypes: ['Ocean', 'Air', 'Rail', 'Road'],
-        shippers: ['ADAMS AND SONS', 'GLOBAL TECH LIMITED', 'DIGITAL SOLUTIONS CO', 'INNOVATIVE IMPORTS LLC', 'TECH DISTRIBUTORS INC', 'GLOBAL ELECTRONICS CORP', 'SMART TECH SOLUTIONS', 'FUTURE TECH IMPORTS', 'DIGITAL IMPORTS CO', 'PACIFIC TECH TRADERS', 'QUANTUM ELECTRONICS LTD', 'MATRIX IMPORTS INC', 'NEXTGEN SOLUTIONS', 'DIGITAL DYNAMICS LLC', 'TECH WAVE INDUSTRIES', 'SILICON TRADERS CO', 'GLOBAL CHIP SOLUTIONS', 'CIRCUIT CITY IMPORTS', 'TECH SPHERE LIMITED', 'DIGITAL NEXUS CORP', 'SMART COMPONENTS INC', 'TECH INNOVATIONS GROUP', 'GLOBAL TECH SYSTEMS', 'DIGITAL WORLD CORP', 'FUTURE ELECTRONICS LTD', 'PRIME TECH SOLUTIONS', 'ADVANCED SYSTEMS CO', 'ELITE TECH IMPORTS', 'TECH PIONEER GROUP', 'SMART TECH IMPORTERS'],
+        shippers: ['TECH EXPORTS INC', 'SAMSUNG ELECTRONICS', 'MS MANUFACTURING', 'DELL ASIA', 'HP SINGAPORE', 'LENOVO CHINA', 'ASUS TAIWAN', 'ACER ELECTRONICS', 'TOSHIBA JAPAN', 'LG ELECTRONICS', 'SONY CORPORATION', 'PANASONIC JAPAN', 'INTEL ASIA', 'AMD MALAYSIA', 'NVIDIA TAIWAN', 'QUALCOMM CHINA', 'WD THAILAND', 'SEAGATE SINGAPORE', 'CISCO CHINA', 'JUNIPER MALAYSIA', 'XIAOMI ELECTRONICS', 'HUAWEI TECH', 'OPPO MOBILE', 'VIVO TECH', 'REALME MOBILE', 'TCL ELECTRONICS', 'MOTOROLA MOBILITY', 'ONEPLUS TECH', 'ZTE CORPORATION', 'BLACKBERRY LIMITED'],
         sales: ['John Smith', 'Mary Johnson', 'Robert Davis', 'Patricia Brown', 'Michael Wilson', 'Sarah Lee', 'David Chen', 'Jennifer Wong', 'Kevin Park', 'Emily Kim', 'Thomas Yang', 'Richard Lee', 'Nancy Chen', 'Andrew Zhang', 'Michelle Wang', 'Steven Liu', 'Laura Kim', 'Daniel Tan', 'Rachel Wong', 'Eric Chen', 'Helen Zhang', 'Jason Li', 'Linda Wang', 'Mark Chen', 'Amy Liu', 'Peter Chang', 'Karen Wu', 'Tony Zhang', 'Alice Wang', 'Chris Lee'],
         packageTypes: ['CARTONS', 'PALLET', 'CONTAINER', 'BOX', 'CASE'],
         emptyPickupList: [''],
         freightPickupList: [''],
         emptyReturnList: [''],
         types: ['Trucker', 'Carrier', 'Agent'],
-        ports: ['Los Angeles', 'Seattle', 'Oakland', 'Long Beach', 'Tacoma', 'Portland', 'San Francisco']
+        ports: ['Los Angeles', 'Seattle', 'Oakland', 'Long Beach', 'Tacoma', 'Portland', 'San Francisco'],
+        portOfLoading: ['Shanghai', 'Busan', 'Tokyo', 'Hong Kong', 'Singapore', 'Shenzhen', 'Taipei', 'Kaohsiung', 'Yokohama', 'Incheon', 'Osaka', 'Kobe', 'Ningbo', 'Port Klang', 'Keelung', 'Xiamen', 'Laem Chabang', 'Qingdao', 'Penang', 'Guangzhou', 'Tianjin', 'Vancouver'],
+        portOfDischarge:['Los Angeles', 'Seattle', 'Oakland', 'Long Beach', 'Tacoma', 'Portland', 'San Francisco']
     };
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: {
-            fileNo: "56467",
-            mblNo: "674344",
-            quotationNo: "345345",
-            consignee: "ADAMS AND SONS",
-            postDate: "2021-05-17",
-            office: "CHI",
-            customer: "APPLE",
-            trucker: "NELSON",
-            vesselFlightNo: "546456",
-            customerRefNo: "546456",
-            billTo: "HCT",
-            type: "Trucker",
-            shipType: "Ocean",
-            carrierBkgNo: "CBK789012",
-            shipper: "ADAMS AND SONS",
-            sales: "John Smith",
-            portOfLoading: "Shanghai",
-            portOfDischarge: "Los Angeles",
-            finalDestination: "Los Angeles",
-            etd: "2021-05-20",
-            finalEta: "2021-06-10",
-            eta: "2021-06-08",
-            emptyPickup: "2021-05-15",
-            freightPickup: "2021-05-16",
-            deliveryTo: "Chicago Warehouse",
-            emptyReturn: "2021-06-15",
-            packageType: "CARTONS",
-            packageWeight: 10,
-            measurement: "12x10x8",
-            delivered: false,
-            estimatedDeliveryDate: "2021-06-12"
-        }
-    });
 
     const onSubmit = (data: any) => {
         setLoading(true);
-        showToastMsg(ToastMsgType.SUCCESS, "New Shipment Created !!");
-        setTimeout(()=>setLoading(false),3000);
-        console.log(data);
+        if(data.shipmentId == '0'){
+            dispatch(addShipment(data));
+            showToastMsg(ToastMsgType.SUCCESS, "New Shipment Created !!");
+        }else{
+            dispatch(editShipment(data));
+            showToastMsg(ToastMsgType.SUCCESS, "Shipment Saved Successfully !!");
+        }
+        setTimeout(()=>{onSubmitChanges();setLoading(false);},3000);
     };
 
     return (
         <Container>
             <Card data-bs-theme={theme}>
                 <CardHeader className='text-center'>
-                    <h4>New Shipment</h4>
+                    <h4>{getValues("shipmentId") == '0'?'New':'Edit'}&nbsp;Shipment</h4>
                 </CardHeader>
                 <CardBody>
                     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -239,7 +261,7 @@ const NewShipment = ({ theme }: any) => {
                                 <Form.Group controlId="portOfLoading">
                                     <Form.Label>Port of Loading</Form.Label>
                                     <Form.Control as="select" className="form-select" {...register('portOfLoading', { required: true })}>
-                                        {options.ports.map((option: any) => (
+                                        {options.portOfLoading.map((option: any) => (
                                             <option key={option} value={option}>
                                                 {option}
                                             </option>
@@ -252,7 +274,7 @@ const NewShipment = ({ theme }: any) => {
                                 <Form.Group controlId="portOfDischarge">
                                     <Form.Label>Port of Discharge</Form.Label>
                                     <Form.Control as="select" className="form-select" {...register('portOfDischarge', { required: true })}>
-                                        {options.ports.map((option: any) => (
+                                        {options.portOfDischarge.map((option: any) => (
                                             <option key={option} value={option}>
                                                 {option}
                                             </option>
@@ -267,7 +289,7 @@ const NewShipment = ({ theme }: any) => {
                                 <Form.Group controlId="finalDestination">
                                     <Form.Label>Final Destination</Form.Label>
                                     <Form.Control as="select" className="form-select" {...register('finalDestination', { required: true })}>
-                                        {options.ports.map((option: any) => (
+                                        {options.portOfDischarge.map((option: any) => (
                                             <option key={option} value={option}>
                                                 {option}
                                             </option>
@@ -279,13 +301,7 @@ const NewShipment = ({ theme }: any) => {
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="freightPickup">
                                     <Form.Label>Freight Pickup</Form.Label>
-                                    <Form.Control as="select" className="form-select" {...register('freightPickup', { required: true })}>
-                                        {options.freightPickupList.map((option: any) => (
-                                            <option key={option} value={option}>
-                                                {option}
-                                            </option>
-                                        ))}
-                                    </Form.Control>
+                                    <Form.Control type="date" {...register('freightPickup', { required: true })} />
                                     {errors.freightPickup && <span>This field is required</span>}
                                 </Form.Group>
                             </Col>
@@ -317,13 +333,7 @@ const NewShipment = ({ theme }: any) => {
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="emptyPickup">
                                     <Form.Label>Empty Pickup</Form.Label>
-                                    <Form.Control as="select" className="form-select" {...register('emptyPickup', { required: true })}>
-                                        {options.emptyPickupList.map((option: any) => (
-                                            <option key={option} value={option}>
-                                                {option}
-                                            </option>
-                                        ))}
-                                    </Form.Control>
+                                    <Form.Control type="date" {...register('emptyPickup', { required: true })} />
                                     {errors.emptyPickup && <span>This field is required</span>}
                                 </Form.Group>
                             </Col>
@@ -345,13 +355,7 @@ const NewShipment = ({ theme }: any) => {
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="emptyReturn">
                                     <Form.Label>Empty Return</Form.Label>
-                                    <Form.Control as="select" className="form-select" {...register('emptyReturn', { required: true })}>
-                                        {options.emptyReturnList.map((option: any) => (
-                                            <option key={option} value={option}>
-                                                {option}
-                                            </option>
-                                        ))}
-                                    </Form.Control>
+                                    <Form.Control type="date" {...register('emptyReturn', { required: true })} />
                                     {errors.emptyReturn && <span>This field is required</span>}
                                 </Form.Group>
                             </Col>
@@ -407,10 +411,9 @@ const NewShipment = ({ theme }: any) => {
                                 <Button className='w-100 mt-5' variant="primary" type="submit">Submit</Button>
                             </Col>
                             <Col md={6} lg={6} className='mt-3'>
-                                <Button className='w-100 mt-5' onClick={onSubmit} variant="danger">Cancel</Button>
+                                <Button className='w-100 mt-5' onClick={onCancelNewShipment} variant="danger">Cancel</Button>
                             </Col>
                         </Row>
-                        
                     </Form>
                 </CardBody>
             </Card>
