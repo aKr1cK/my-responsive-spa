@@ -69,7 +69,7 @@ const Truck = ({ theme }: any) => {
             <Card className={theme == 'dark' ? "bg-dark text-white" : "bg-light"}>
                 <Card.Header>
                     <Row>
-                        <Col xs={1} lg={1} sm={1}>
+                        <Col xs={1} lg={1} sm={1} className='align-content-center'>
                             {activeTab == 'Shipment List' && <ButtonGroup className="me-2" aria-label="First group">
                                 <Button onClick={() => setActiveTab('New Shipment')}><IoMdAddCircle size={22} /></Button>
                                 <Button><PiCopyBold size={22} /></Button>
@@ -77,8 +77,8 @@ const Truck = ({ theme }: any) => {
                             </ButtonGroup>}
                         </Col>
                         <Col></Col>
-                        {(activeTab == 'New Shipment' || activeTab == 'Edit Shipment') && <Col xs={1} lg={1} sm={1}>{<AiOutlineClose className="bg-danger" size={20} onClick={() => setActiveTab('Shipment List')} />}</Col>}
-                        {(activeTab == 'Shipment List') && <Col xs={2} lg={2} sm={2}>{<Form.Check type="switch" id="custom-switch" label="My Shipment" checked={isManual} onChange={handleManualToggle} />}</Col>}
+                        {(activeTab == 'New Shipment' || activeTab == 'Edit Shipment') && <Col xs={1} lg={1} className='align-content-center' sm={1}>{<AiOutlineClose className="bg-danger" size={20} onClick={() => setActiveTab('Shipment List')} />}</Col>}
+                        {(activeTab == 'Shipment List') && <Col xs={5} lg={2} sm={4} className='align-content-center'>{<Form.Check type="switch" id="custom-switch" label="My Shipment" checked={isManual} onChange={handleManualToggle} />}</Col>}
                     </Row>
                 </Card.Header>
                 <Card.Body>

@@ -38,4 +38,17 @@ body.dark-theme {
   background-color: #20707D;
 }
 
+.form-switch {
+  display: flex !important;
+  align-items: center !important;
+  text-overflow: ellipsis;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+#custom-switch {
+  width: 3.2em;
+  height: 1.8em;
+  margin-right: 8px;
+}
 
