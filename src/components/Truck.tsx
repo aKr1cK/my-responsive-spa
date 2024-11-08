@@ -13,7 +13,7 @@ import { ToastMsgType, useGlobalContext } from '../context/GlobalProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import { debounce as _debounce } from 'lodash';
 import ConfirmModal from './ConfirmModal';
-import { deleteShipments as  deleteStoreShipments} from '../store/authSlice';
+import { deleteShipments as deleteStoreShipments } from '../store/authSlice';
 
 const Truck = ({ theme }: any) => {
     const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Truck = ({ theme }: any) => {
     const [gridApi, setGridApi] = useState(null);
     useLayoutEffect(() => {
         let updateSize = _debounce(() => {
-            console.log('updateSize'+size);
+            console.log('updateSize' + size);
             setSize([window.innerWidth, window.innerHeight])
         }, 100);
         window.addEventListener('resize', updateSize);
@@ -72,14 +72,14 @@ const Truck = ({ theme }: any) => {
 
     const deleteShipments = () => {
         let selectedData = (gridApi as any).getSelectedRows();
-        if(selectedData.length){
+        if (selectedData.length) {
             setShowConfirm(true);
         }
     }
 
     const handleConfirm = () => {
-        let selectedData = (gridApi as any).getSelectedRows() ||  [];
-        dispatch(deleteStoreShipments(selectedData));//{payload:selectedData}
+        let selectedData = (gridApi as any).getSelectedRows() || [];
+        dispatch(deleteStoreShipments(selectedData));
         setShowConfirm(false);
     };
 
@@ -139,12 +139,12 @@ const Truck = ({ theme }: any) => {
                 </Card.Body>
             </Card>
             <ConfirmModal
-        show={showConfirm}
-        onHide={() => setShowConfirm(false)}
-        onConfirm={handleConfirm}
-        title="Delete Item"
-        body="Are you sure you want to delete this item(s)? This action cannot be undone."
-      />
+                show={showConfirm}
+                onHide={() => setShowConfirm(false)}
+                onConfirm={handleConfirm}
+                title="Delete Item"
+                body="Are you sure you want to delete this item(s)? This action cannot be undone."
+            />
         </>
     )
 };
