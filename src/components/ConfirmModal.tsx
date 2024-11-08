@@ -2,7 +2,7 @@ import { Modal, Button } from 'react-bootstrap';
 
 const ConfirmModal = ({ show, onHide, onConfirm, title, body }: any) => {
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal className='cardOverride' show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
         <Modal.Title>{title || 'Confirm Action'}</Modal.Title>
       </Modal.Header>

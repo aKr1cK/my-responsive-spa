@@ -1,6 +1,6 @@
 import { Navbar, Container, Nav, Dropdown } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CenteredIcon from './ui/CenteredIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from './ui/Logo';

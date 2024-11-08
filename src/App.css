@@ -8,7 +8,7 @@
 
 .dark-theme {
   /* background-color: #212529; */
-  background: url('assets/cool-background3.png');
+  background: url('assets/cool-background5.png');
   background-size: cover;
   color: white;
 }
@@ -23,26 +23,26 @@
   flex: 1;
 }
 
-.mainDiv{
+.mainDiv {
   display: flex;
   flex: 1;
   justify-content: center;
 }
 
-.maxHeight{
+.maxHeight {
   height: auto !important;
 }
 
-#root{
+#root {
   /* background-color: black; */
   user-select: none;
 }
 
-#dropdown-basic::after{
+#dropdown-basic::after {
   display: none !important;
 }
 
-.darkGreenBg{
+.darkGreenBg {
   background-color: #20707D;
 }
 
@@ -60,14 +60,30 @@
   margin-right: 8px;
 }
 
-.active-light{
+.active-light {
   background-color: #20707D;
   color: white;
 }
 
-.active-dark{
+.active-dark {
   background-color: white;
   color: #0d6efd;
 }
 
+.cardOverride {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
 
+.circularBottomCorners{
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+/* .opacity7{
+  opacity: 0.7;
+} */

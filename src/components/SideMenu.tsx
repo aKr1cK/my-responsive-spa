@@ -17,7 +17,7 @@ const SideMenu = ({ theme }: any) => {
       : 'sidebar-menu-item';
   const textColor: string = (theme == 'dark'?'white':'#0d6efd');
   return (
-    <CDBSidebar className={theme == 'dark' ? 'maxHeight bg-dark' : 'maxHeight bg-light'} textColor={textColor} backgroundColor={''} breakpoint={0} toggled={false} minWidth={'auto'} maxWidth={''} >
+    <CDBSidebar className={theme == 'dark' ? 'maxHeight bg-dark opacity7' : 'maxHeight bg-light opacity7'} textColor={textColor} backgroundColor={''} breakpoint={0} toggled={true} minWidth={'auto'} maxWidth={''} >
       <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', alignContent: 'center' }}>
           <span className="ms-2">WorldGoCargo ™</span>

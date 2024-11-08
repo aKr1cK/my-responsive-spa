@@ -3,7 +3,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../store/authSlice';
+import { loginSuccess, logout } from '../store/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -28,17 +28,19 @@ const Login = ({theme}: any) => {
       formPassword: "",
     }
   });
-
+  
+  dispatch((logout()))// clear if old login
+  
   const onSubmit = () => {
     dispatch(loginSuccess(email));
     setTimeout(() => {
       navigate('/truck', { replace: true });
-    });
+    },500);
   };
 
   return (
     <Wrapper>
-      <Card className={theme == 'dark' ? "bg-dark text-white" : "bg-white text-black"}>
+      <Card className={theme == 'dark' ? "bg-dark text-white cardOverride" : "bg-dark text-white cardOverride"}>
         <Card.Header>
           <h6>Sign In</h6>
         </Card.Header>

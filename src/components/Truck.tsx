@@ -3,7 +3,6 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'reac
 import { IoMdAddCircle } from 'react-icons/io';
 import { Button, Card, ButtonGroup, Form } from 'react-bootstrap';
 import { FaGreaterThan } from 'react-icons/fa';
-import { AiOutlineClose } from 'react-icons/ai';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { PiCopyBold } from 'react-icons/pi';
@@ -94,7 +93,7 @@ const Truck = ({ theme }: any) => {
             let breadCrumHeight = Math.max(document.getElementsByClassName('breadcrum')[0].clientHeight || 0);
             let buttonGrpHeight = Math.max(document.getElementsByClassName('buttonGrp')[0].clientHeight || 0);
             let footerHeight = Math.max(document.getElementsByTagName('footer')[0].clientHeight || 0);
-            let gridHeight = vh - headerHeight - breadCrumHeight - buttonGrpHeight - footerHeight - 85;
+            let gridHeight = vh - headerHeight - breadCrumHeight - buttonGrpHeight - footerHeight - 93;
             return gridHeight;
         } catch (e) {
             //console.log(e);
@@ -110,11 +109,13 @@ const Truck = ({ theme }: any) => {
 
     return (
         <>
-            <div className="text-start p-2 darkGreenBg breadcrum">
-                Home&nbsp;&nbsp;<FaGreaterThan />&nbsp;&nbsp;{activeTab}
-            </div>
-            <Card className={theme == 'dark' ? "bg-dark text-white" : "bg-light"}>
+            <Card className="cardOverride">
                 <Card.Header className='buttonGrp'>
+                    <div className={theme == 'dark' ? "text-start p-2 text-white breadcrum" : "text-start p-2 text-black breadcrum"}>
+                        Home&nbsp;&nbsp;<FaGreaterThan />&nbsp;&nbsp;{activeTab}
+                    </div>
+                </Card.Header>
+                <Card.Body className={theme == 'dark' ? "bg-dark text-white circularBottomCorners" : "bg-light circularBottomCorners"}>
                     <Row>
                         <Col xs={1} lg={1} sm={1} className='align-content-center'>
                             {activeTab == 'Shipment List' && <ButtonGroup className="me-2" aria-label="First group">
@@ -124,11 +125,8 @@ const Truck = ({ theme }: any) => {
                             </ButtonGroup>}
                         </Col>
                         <Col></Col>
-                        {(activeTab == 'New Shipment' || activeTab == 'Edit Shipment') && <Col xs={1} lg={1} className='align-content-center' sm={1}>{<AiOutlineClose className="bg-danger" size={20} onClick={() => setActiveTab('Shipment List')} />}</Col>}
                         {(activeTab == 'Shipment List') && <Col xs={5} lg={2} sm={4} className='align-content-center'>{<Form.Check type="switch" id="custom-switch" label="My Shipment" checked={isManual} onChange={handleManualToggle} />}</Col>}
                     </Row>
-                </Card.Header>
-                <Card.Body>
                     {activeTab == 'Shipment List' && <>
                         <div className={theme == "dark" ? "ag-theme-alpine-dark pt-2" : "ag-theme-alpine pt-2"} style={{ height: getGridHeight() }}>
                             <AgGridReact onGridReady={onGridReady} rowData={rowData} columnDefs={colDefs} rowSelection={rowSelection} onRowDoubleClicked={onRowDoubleClicked} />

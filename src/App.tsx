@@ -34,6 +34,7 @@ function App() {
   return (
 
     <div className={`App ${theme}-theme`}>
+      
       <Router>
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
         <div className='mainDiv' style={!isAuthenticated ? { alignItems: 'center' } : {}}>
