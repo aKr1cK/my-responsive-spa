@@ -43,9 +43,13 @@ export const authSlice = createSlice({
           existingShipment[keys] = action.payload[keys];
         })
       }
-    }
+    },
+    deleteShipments: (state, action) => {
+      const shipmentIds = action.payload.map((item: any)=>item.shipmentId);
+      state.shipments = state.shipments.filter((item)=>!shipmentIds.includes(item.shipmentId));
+    },
   }
 })
 
-export const { loginStart, loginSuccess, loginFailed, logout, addShipment, editShipment } = authSlice.actions
+export const { loginStart, loginSuccess, loginFailed, logout, addShipment, editShipment, deleteShipments } = authSlice.actions
 export default authSlice.reducer

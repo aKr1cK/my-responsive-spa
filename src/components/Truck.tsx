@@ -1,5 +1,5 @@
 import { AgGridReact } from 'ag-grid-react';
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
 import { Button, Card, ButtonGroup, Form } from 'react-bootstrap';
 import { FaGreaterThan } from 'react-icons/fa';
@@ -10,10 +10,13 @@ import { PiCopyBold } from 'react-icons/pi';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import NewShipment from './NewShipment';
 import { ToastMsgType, useGlobalContext } from '../context/GlobalProvider';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { debounce as _debounce } from 'lodash';
+import ConfirmModal from './ConfirmModal';
+import { deleteShipments as  deleteStoreShipments} from '../store/authSlice';
 
 const Truck = ({ theme }: any) => {
+    const dispatch = useDispatch();
     const shipments: any = useSelector((state: any) => state?.auth.shipments)
     const { showToastMsg, setLoading } = useGlobalContext();
     const [activeTab, setActiveTab] = useState('Shipment List');
@@ -21,8 +24,10 @@ const Truck = ({ theme }: any) => {
     const [rowData, setRowData] = useState(shipments);
     const [colDefs/*, setColDefs*/]: any[] = useState([{ "field": "delivered" }, { "field": "fileNo" }, { "field": "mblNo" }, { "field": "quotationNo" }, { "field": "consignee" }, { "field": "postDate" }, { "field": "office" }, { "field": "customer" }, { "field": "trucker" }, { "field": "vesselFlightNo" }, { "field": "customerRefNo" }, { "field": "billTo" }, { "field": "type" }, { "field": "shipType" }, { "field": "carrierBkgNo" }, { "field": "shipper" }, { "field": "sales" }, { "field": "portOfLoading" }, { "field": "portOfDischarge" }, { "field": "etd" }, { "field": "finalEta" }, { "field": "eta" }, { "field": "emptyPickup" }, { "field": "freightPickup" }, { "field": "deliveryTo" }, { "field": "emptyReturn" }, { "field": "packageType" }, { "field": "packageWeight" }, { "field": "measurement" }, { "field": "estimatedDeliveryDate" }]);
     const [selectedShipment, setSelectedShipment] = useState({});
+    const [showConfirm, setShowConfirm] = useState(false);
 
     const [size, setSize] = useState([0, 0]);
+    const [gridApi, setGridApi] = useState(null);
     useLayoutEffect(() => {
         let updateSize = _debounce(() => {
             console.log('updateSize'+size);
@@ -39,7 +44,11 @@ const Truck = ({ theme }: any) => {
         } else {
             setRowData(shipments);
         }
-    }, [shipments, activeTab, isManual])
+    }, [shipments, activeTab, isManual]);
+
+    const onGridReady = useCallback((params: any) => {
+        setGridApi(params.api);
+    }, []);
 
     const rowSelection: any = useMemo(() => {
         return {
@@ -61,13 +70,25 @@ const Truck = ({ theme }: any) => {
         setActiveTab('Shipment List');
     }
 
+    const deleteShipments = () => {
+        let selectedData = (gridApi as any).getSelectedRows();
+        if(selectedData.length){
+            setShowConfirm(true);
+        }
+    }
+
+    const handleConfirm = () => {
+        let selectedData = (gridApi as any).getSelectedRows() ||  [];
+        dispatch(deleteStoreShipments(selectedData));//{payload:selectedData}
+        setShowConfirm(false);
+    };
+
     const handleManualToggle = () => {
         setManual((prevChecked) => !prevChecked);
     };
 
     const getGridHeight = () => {
         try {
-            debugger;
             let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
             let headerHeight = Math.max(document.getElementsByClassName('navbar')[0].clientHeight || 0);
             let breadCrumHeight = Math.max(document.getElementsByClassName('breadcrum')[0].clientHeight || 0);
@@ -76,7 +97,7 @@ const Truck = ({ theme }: any) => {
             let gridHeight = vh - headerHeight - breadCrumHeight - buttonGrpHeight - footerHeight - 85;
             return gridHeight;
         } catch (e) {
-
+            //console.log(e);
         }
     }
 
@@ -98,8 +119,8 @@ const Truck = ({ theme }: any) => {
                         <Col xs={1} lg={1} sm={1} className='align-content-center'>
                             {activeTab == 'Shipment List' && <ButtonGroup className="me-2" aria-label="First group">
                                 <Button onClick={() => setActiveTab('New Shipment')}><IoMdAddCircle size={22} /></Button>
-                                <Button><PiCopyBold size={22} /></Button>
-                                <Button><RiDeleteBin5Line size={22} /></Button>
+                                <Button disabled><PiCopyBold size={22} /></Button>
+                                <Button variant="danger" onClick={() => deleteShipments()}><RiDeleteBin5Line size={22} /></Button>
                             </ButtonGroup>}
                         </Col>
                         <Col></Col>
@@ -110,13 +131,20 @@ const Truck = ({ theme }: any) => {
                 <Card.Body>
                     {activeTab == 'Shipment List' && <>
                         <div className={theme == "dark" ? "ag-theme-alpine-dark pt-2" : "ag-theme-alpine pt-2"} style={{ height: getGridHeight() }}>
-                            <AgGridReact rowData={rowData} columnDefs={colDefs} rowSelection={rowSelection} onRowDoubleClicked={onRowDoubleClicked} />
+                            <AgGridReact onGridReady={onGridReady} rowData={rowData} columnDefs={colDefs} rowSelection={rowSelection} onRowDoubleClicked={onRowDoubleClicked} />
                         </div>
                     </>}
                     {activeTab == 'New Shipment' && <NewShipment theme={theme} onCancelNewShipment={onCancelNewShipment} onSubmitChanges={onSubmitChanges} />}
                     {activeTab == 'Edit Shipment' && <NewShipment theme={theme} selectedShipment={selectedShipment} onCancelNewShipment={onCancelNewShipment} onSubmitChanges={onSubmitChanges} />}
                 </Card.Body>
             </Card>
+            <ConfirmModal
+        show={showConfirm}
+        onHide={() => setShowConfirm(false)}
+        onConfirm={handleConfirm}
+        title="Delete Item"
+        body="Are you sure you want to delete this item(s)? This action cannot be undone."
+      />
         </>
     )
 };

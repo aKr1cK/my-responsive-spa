@@ -26,7 +26,7 @@ const SideMenu = ({ theme }: any) => {
         <CDBSidebarMenu>
           <Link to="/home"><CDBSidebarMenuItem className={getActiveClass('/home')} icon="home">Home</CDBSidebarMenuItem></Link>
           <Link to="/truck"><CDBSidebarMenuItem className={getActiveClass('/truck')} icon="truck">Truck</CDBSidebarMenuItem></Link>
-          <Link to="/about"><CDBSidebarMenuItem className={getActiveClass('/about')} icon="ship" iconType="solid">About</CDBSidebarMenuItem></Link>
+          <Link to="/about"><CDBSidebarMenuItem className={getActiveClass('/about')} icon="ship" iconType="solid">About Us</CDBSidebarMenuItem></Link>
         </CDBSidebarMenu>
       </CDBSidebarContent>
     </CDBSidebar>

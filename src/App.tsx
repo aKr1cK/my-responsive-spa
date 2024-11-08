@@ -18,7 +18,7 @@ import { Container } from 'react-bootstrap';
 
 function App() {
   const { isAuthenticated } = useSelector((state: any) => state?.auth)
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   // Toggle between light and dark themes
   const toggleTheme = () => {
