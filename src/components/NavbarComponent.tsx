@@ -22,15 +22,15 @@ const NavbarComponent = ({ theme }: any) => {
     return (
         <Navbar bg={theme} variant={theme} expand="lg">
             <Container>
-                <Navbar.Brand>{/*<FaRocket size={40} color='green' />*/}<Logo />&nbsp;&nbsp;&nbsp;&nbsp;<span className='logo-banner'></span>WordGoCargo</Navbar.Brand>
+                <Navbar.Brand>{/*<FaRocket size={40} color='green' />*/}<Logo />&nbsp;&nbsp;&nbsp;&nbsp;<span className='logo-banner'></span>WordGoCargo ™</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="ms-auto">
                         {isAuthenticated ?
                             <>
-                                <Nav.Link as={Link} to="/home">Home</Nav.Link>
+                                {/* <Nav.Link as={Link} to="/home">Home</Nav.Link>
                                 <Nav.Link as={Link} to="/truck">Truck</Nav.Link>
-                                <Nav.Link as={Link} to="/about">About</Nav.Link>
+                                <Nav.Link as={Link} to="/about">About</Nav.Link> */}
                                 <Dropdown data-bs-theme={theme}>
                                     <Dropdown.Toggle id="dropdown-basic" style={{ background: 'Transparent', border: 'none' }}>
                                         <CenteredIcon><FaUserCircle size={32} color={theme == 'dark'? "white":"black"} /></CenteredIcon>

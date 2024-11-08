@@ -12,13 +12,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [email] = useState('');
-
+  //background: radial-gradient(#0d6efd, transparent);
   const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: radial-gradient(#0d6efd, transparent);
     .card{
       width: 450px;
     }

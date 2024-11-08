@@ -19,6 +19,16 @@ body.dark-theme {
   flex: 1;
 }
 
+.mainDiv{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.maxHeight{
+  height: auto !important;
+}
+
 #root{
   background-color: black;
   color: white;

@@ -12,6 +12,9 @@ import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the 
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional Theme applied to the Data Grid
 import Truck from './components/Truck';
 import { useSelector } from 'react-redux';
+import SideMenu from './components/SideMenu';
+import { Container } from 'react-bootstrap';
+import { GrRadial } from 'react-icons/gr';
 
 
 function App() {
@@ -25,7 +28,6 @@ function App() {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
   };
-
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) setTheme(savedTheme);
@@ -36,15 +38,21 @@ function App() {
     <div className={`App ${theme}-theme`}>
       <Router>
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={isAuthenticated? <Home /> : <Login />} />
-          <Route path="/truck" element={ isAuthenticated? <Truck theme={theme} /> : <Login />} />
-          <Route path="/about" element={ isAuthenticated? <About /> : <Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Login />} />
-        </Routes>
-        <Footer theme={theme}/>
+        <div className='mainDiv' style={!isAuthenticated ? {background: "radial-gradient(#0d6efd, transparent)", alignItems:'center'}:{}}>
+          {isAuthenticated && <SideMenu theme={theme} />}
+          <Container className='mb-4 mt-4'>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={isAuthenticated ? <Home /> : <Login />} />
+            <Route path="/truck" element={isAuthenticated ? <Truck theme={theme} /> : <Login />} />
+            <Route path="/about" element={isAuthenticated ? <About /> : <Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Login />} />
+          </Routes>
+          </Container>
+        </div>
+
+        <Footer theme={theme} />
       </Router>
     </div>
   );
