@@ -8,19 +8,17 @@ import About from './components/About';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional Theme applied to the Data Grid
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
 import Truck from './components/Truck';
 import { useSelector } from 'react-redux';
 import SideMenu from './components/SideMenu';
 import { Container } from 'react-bootstrap';
-import { GrRadial } from 'react-icons/gr';
 
 
 function App() {
-  //const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state: any) => state?.auth)
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
 
   // Toggle between light and dark themes
   const toggleTheme = () => {
@@ -38,17 +36,17 @@ function App() {
     <div className={`App ${theme}-theme`}>
       <Router>
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
-        <div className='mainDiv' style={!isAuthenticated ? {background: "radial-gradient(#0d6efd, transparent)", alignItems:'center'}:{}}>
+        <div className='mainDiv' style={!isAuthenticated ? { alignItems: 'center' } : {}}>
           {isAuthenticated && <SideMenu theme={theme} />}
           <Container className='mb-4 mt-4'>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/home" element={isAuthenticated ? <Home /> : <Login />} />
-            <Route path="/truck" element={isAuthenticated ? <Truck theme={theme} /> : <Login />} />
-            <Route path="/about" element={isAuthenticated ? <About /> : <Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Login />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Login theme={theme} />} />
+              <Route path="/home" element={isAuthenticated ? <Home /> : <Login theme={theme} />} />
+              <Route path="/truck" element={isAuthenticated ? <Truck theme={theme} /> : <Login theme={theme}/>} />
+              <Route path="/about" element={isAuthenticated ? <About /> : <Login theme={theme} />} />
+              <Route path="/login" element={<Login theme={theme} />} />
+              <Route path="*" element={<Login theme={theme}/>} />
+            </Routes>
           </Container>
         </div>
 

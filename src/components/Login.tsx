@@ -7,7 +7,7 @@ import { loginSuccess } from '../store/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-const Login = () => {
+const Login = ({theme}: any) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,19 +37,10 @@ const Login = () => {
   };
 
   return (
-    // <Container className="align-middle h-100 bg-primary">
-    //   <Row>
-    //     <Col xs={0} sm={2} lg={4}></Col>
-    //     <Col xs={12} sm={8} lg={4}>
-
-    //     </Col>
-    //     <Col xs={0} sm={2} lg={4}></Col>
-    //   </Row>
-    // </Container>
     <Wrapper>
-      <Card className="bg-dark text-white">
+      <Card className={theme == 'dark' ? "bg-dark text-white" : "bg-white text-black"}>
         <Card.Header>
-          Login
+          <h6>Sign In</h6>
         </Card.Header>
         <Card.Body>
           <Form onSubmit={handleSubmit(onSubmit)} className="mb-3">

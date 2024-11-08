@@ -1,12 +1,16 @@
 /* src/App.css */
-body.light-theme {
-  background-color: #ffffff;
-  color: #000000;
+.light-theme {
+  /* background-color: #ffffff; */
+  background: url('assets/cool-background.png');
+  background-size: cover;
+  /* color: #000000; */
 }
 
-body.dark-theme {
-  background-color: #212529;
-  color: #ffffff;
+.dark-theme {
+  /* background-color: #212529; */
+  background: url('assets/cool-background3.png');
+  background-size: cover;
+  color: white;
 }
 
 .App {
@@ -30,15 +34,9 @@ body.dark-theme {
 }
 
 #root{
-  background-color: black;
-  color: white;
+  /* background-color: black; */
   user-select: none;
 }
-
-/* :root.light-theme{
-  background-color: black;
-  background-image: -moz-radial-gradient(0,0,256);
-} */
 
 #dropdown-basic::after{
   display: none !important;
@@ -61,4 +59,14 @@ body.dark-theme {
   height: 1.8em;
   margin-right: 8px;
 }
+
+.active-light{
+  background-color: #20707D;
+  color: white;
+}
+
+.active-dark{
+  background-color: white;
+}
+
 

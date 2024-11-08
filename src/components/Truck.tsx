@@ -1,7 +1,7 @@
 import { AgGridReact } from 'ag-grid-react';
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
-import { Button, Card, ButtonGroup, Container, Form } from 'react-bootstrap';
+import { Button, Card, ButtonGroup, Form } from 'react-bootstrap';
 import { FaGreaterThan } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
 import Row from 'react-bootstrap/Row';
@@ -25,7 +25,7 @@ const Truck = ({ theme }: any) => {
     const [size, setSize] = useState([0, 0]);
     useLayoutEffect(() => {
         let updateSize = _debounce(() => {
-            console.log('updateSize');
+            console.log('updateSize'+size);
             setSize([window.innerWidth, window.innerHeight])
         }, 100);
         window.addEventListener('resize', updateSize);
