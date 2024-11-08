@@ -15,8 +15,9 @@ const SideMenu = ({ theme }: any) => {
         ? 'sidebar-menu-item active-dark'
         : 'sidebar-menu-item active-light'
       : 'sidebar-menu-item';
+  const textColor: string = (theme == 'dark'?'white':'#0d6efd');
   return (
-    <CDBSidebar className={theme == 'dark' ? 'maxHeight bg-dark' : 'maxHeight bg-light'} textColor={'#0d6efd'} backgroundColor={''} breakpoint={0} toggled={false} minWidth={'auto'} maxWidth={''} >
+    <CDBSidebar className={theme == 'dark' ? 'maxHeight bg-dark' : 'maxHeight bg-light'} textColor={textColor} backgroundColor={''} breakpoint={0} toggled={false} minWidth={'auto'} maxWidth={''} >
       <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', alignContent: 'center' }}>
           <span className="ms-2">WorldGoCargo ™</span>
@@ -24,9 +25,9 @@ const SideMenu = ({ theme }: any) => {
       </CDBSidebarHeader>
       <CDBSidebarContent>
         <CDBSidebarMenu>
-          <Link to="/home"><CDBSidebarMenuItem className={getActiveClass('/home')} icon="home">Home</CDBSidebarMenuItem></Link>
-          <Link to="/truck"><CDBSidebarMenuItem className={getActiveClass('/truck')} icon="truck">Truck</CDBSidebarMenuItem></Link>
-          <Link to="/about"><CDBSidebarMenuItem className={getActiveClass('/about')} icon="ship" iconType="solid">About Us</CDBSidebarMenuItem></Link>
+          <Link style={{color:textColor}} to="/home"><CDBSidebarMenuItem className={getActiveClass('/home')} icon="home">Home</CDBSidebarMenuItem></Link>
+          <Link style={{color:textColor}} to="/truck"><CDBSidebarMenuItem className={getActiveClass('/truck')} icon="truck">Truck</CDBSidebarMenuItem></Link>
+          <Link style={{color:textColor}} to="/about"><CDBSidebarMenuItem className={getActiveClass('/about')} icon="ship" iconType="solid">About Us</CDBSidebarMenuItem></Link>
         </CDBSidebarMenu>
       </CDBSidebarContent>
     </CDBSidebar>
