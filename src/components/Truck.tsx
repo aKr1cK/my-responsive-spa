@@ -24,9 +24,9 @@ const Truck = ({ theme }: any) => {
     const [colDefs/*, setColDefs*/]: any[] = useState([{ "field": "delivered" }, { "field": "fileNo" }, { "field": "mblNo" }, { "field": "quotationNo" }, { "field": "consignee" }, { "field": "postDate" }, { "field": "office" }, { "field": "customer" }, { "field": "trucker" }, { "field": "vesselFlightNo" }, { "field": "customerRefNo" }, { "field": "billTo" }, { "field": "type" }, { "field": "shipType" }, { "field": "carrierBkgNo" }, { "field": "shipper" }, { "field": "sales" }, { "field": "portOfLoading" }, { "field": "portOfDischarge" }, { "field": "etd" }, { "field": "finalEta" }, { "field": "eta" }, { "field": "emptyPickup" }, { "field": "freightPickup" }, { "field": "deliveryTo" }, { "field": "emptyReturn" }, { "field": "packageType" }, { "field": "packageWeight" }, { "field": "measurement" }, { "field": "estimatedDeliveryDate" }]);
     const [selectedShipment, setSelectedShipment] = useState({});
     const [showConfirm, setShowConfirm] = useState(false);
-
-    const [size, setSize] = useState([0, 0]);
     const [gridApi, setGridApi] = useState(null);
+    const [size, setSize] = useState([0, 0]);
+    
     useLayoutEffect(() => {
         let updateSize = _debounce(() => {
             console.log('updateSize' + size);

@@ -19,22 +19,20 @@ import { Container } from 'react-bootstrap';
 function App() {
   const { isAuthenticated } = useSelector((state: any) => state?.auth)
   const [theme, setTheme] = useState('dark');
-
   // Toggle between light and dark themes
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
   };
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) setTheme(savedTheme);
   }, []);
 
   return (
-
     <div className={`App ${theme}-theme`}>
-      
       <Router>
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
         <div className='mainDiv' style={!isAuthenticated ? { alignItems: 'center' } : {}}>
@@ -43,14 +41,13 @@ function App() {
             <Routes>
               <Route path="/" element={<Login theme={theme} />} />
               <Route path="/home" element={isAuthenticated ? <Home /> : <Login theme={theme} />} />
-              <Route path="/truck" element={isAuthenticated ? <Truck theme={theme} /> : <Login theme={theme}/>} />
+              <Route path="/truck" element={isAuthenticated ? <Truck theme={theme} /> : <Login theme={theme} />} />
               <Route path="/about" element={isAuthenticated ? <About /> : <Login theme={theme} />} />
               <Route path="/login" element={<Login theme={theme} />} />
-              <Route path="*" element={<Login theme={theme}/>} />
+              <Route path="*" element={<Login theme={theme} />} />
             </Routes>
           </Container>
         </div>
-
         <Footer theme={theme} />
       </Router>
     </div>
