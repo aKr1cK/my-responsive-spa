@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 const Login = ({theme}: any) => {
+  const [isGlassLogin, setGlassLogin] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,8 +41,8 @@ const Login = ({theme}: any) => {
 
   return (
     <Wrapper>
-      <Card className={theme == 'dark' ? "bg-dark text-white cardOverride" : "bg-dark text-white cardOverride"}>
-        <Card.Header>
+      <Card className={isGlassLogin? theme == 'dark' ? "cardOverride" : "cardOverride" : theme == 'dark' ? "bg-dark text-white cardOverride" : "bg-dark text-white cardOverride"}>
+        <Card.Header  className='text-center' onDoubleClick={()=>setGlassLogin(!isGlassLogin)}>
           <h6>Sign In</h6>
         </Card.Header>
         <Card.Body>
