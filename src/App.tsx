@@ -37,7 +37,7 @@ function App() {
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
         <div className='mainDiv' style={!isAuthenticated ? { alignItems: 'center' } : {}}>
           {isAuthenticated && <SideMenu theme={theme} />}
-          <Container className='mb-4 mt-4'>
+          <div style={{flex: 1}} className='m-4'>
             <Routes>
               <Route path="/" element={<Login theme={theme} />} />
               <Route path="/home" element={isAuthenticated ? <Home /> : <Login theme={theme} />} />
@@ -46,7 +46,7 @@ function App() {
               <Route path="/login" element={<Login theme={theme} />} />
               <Route path="*" element={<Login theme={theme} />} />
             </Routes>
-          </Container>
+          </div>
         </div>
         <Footer theme={theme} />
       </Router>

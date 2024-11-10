@@ -94,7 +94,7 @@ const Truck = ({ theme }: any) => {
             let buttonGrpHeight = Math.max(document.getElementsByClassName('buttonGrp')[0].clientHeight || 0);
             let footerHeight = Math.max(document.getElementsByTagName('footer')[0].clientHeight || 0);
             let gridHeight = vh - headerHeight - breadCrumHeight - buttonGrpHeight - footerHeight - 93;
-            return gridHeight;
+            return (gridHeight>120) ? gridHeight : 120;
         } catch (e) {
             //console.log(e);
         }
