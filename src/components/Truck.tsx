@@ -93,7 +93,7 @@ const Truck = ({ theme }: any) => {
             let breadCrumHeight = Math.max(document.getElementsByClassName('breadcrum')[0].clientHeight || 0);
             let buttonGrpHeight = Math.max(document.getElementsByClassName('buttonGrp')[0].clientHeight || 0);
             let footerHeight = Math.max(document.getElementsByTagName('footer')[0].clientHeight || 0);
-            let gridHeight = vh - headerHeight - breadCrumHeight - buttonGrpHeight - footerHeight - 93;
+            let gridHeight = vh - headerHeight - breadCrumHeight - buttonGrpHeight - footerHeight - 2;
             return (gridHeight>120) ? gridHeight : 120;
         } catch (e) {
             //console.log(e);
@@ -115,7 +115,7 @@ const Truck = ({ theme }: any) => {
                         Home&nbsp;&nbsp;<FaGreaterThan />&nbsp;&nbsp;{activeTab}
                     </div>
                 </Card.Header>
-                <Card.Body className={theme == 'dark' ? "bg-dark text-white circularBottomCorners" : "bg-light circularBottomCorners"}>
+                <Card.Body className={(activeTab == 'New Shipment' || activeTab == 'New Shipment')?'circularBottomCorners': (theme == 'dark' ? "bg-dark text-white circularBottomCorners" : "bg-light circularBottomCorners")}>
                     <Row>
                         <Col xs={1} lg={1} sm={1} className='align-content-center'>
                             {activeTab == 'Shipment List' && <ButtonGroup className="me-2" aria-label="First group">

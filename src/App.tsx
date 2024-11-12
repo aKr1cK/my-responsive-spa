@@ -13,7 +13,6 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import Truck from './components/Truck';
 import { useSelector } from 'react-redux';
 import SideMenu from './components/SideMenu';
-import { Container } from 'react-bootstrap';
 
 
 function App() {
@@ -37,7 +36,7 @@ function App() {
         <NavbarComponent toggleTheme={toggleTheme} theme={theme} />
         <div className='mainDiv' style={!isAuthenticated ? { alignItems: 'center' } : {}}>
           {isAuthenticated && <SideMenu theme={theme} />}
-          <div style={{flex: 1}} className='m-4'>
+          <div style={{flex: 1}} className='m-2'>
             <Routes>
               <Route path="/" element={<Login theme={theme} />} />
               <Route path="/home" element={isAuthenticated ? <Home /> : <Login theme={theme} />} />

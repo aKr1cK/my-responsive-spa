@@ -5,7 +5,7 @@ import { Card, CardBody, Container } from 'react-bootstrap';
 const About = () => {
   return (
     <Container style={{ color: 'black' }}>
-      <Card className="cardOverride">
+      <Card className="cardOverride" style={{ color: 'black' }}>
         <CardBody>
           <h1>About Us</h1>
           <p><strong>Welcome to WeGoCargo ™</strong></p>

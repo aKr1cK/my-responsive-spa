@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Container, Row, Col, Form, Button, CardHeader, Card, CardBody } from 'react-bootstrap';
+import { Row, Col, Form, Button, CardHeader, Card, CardBody } from 'react-bootstrap';
 import { ToastMsgType, useGlobalContext } from '../context/GlobalProvider';
 import { useEffect } from 'react';
 import { addShipment, editShipment } from '../store/authSlice';
@@ -85,7 +85,8 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
     };
 
     return (
-        <Container>
+        // <Container>
+        <>
             <Card data-bs-theme={theme}>
                 <CardHeader className='text-center'>
                     <h4>{getValues("shipmentId") == '0'?'New':'Edit'}&nbsp;Shipment</h4>
@@ -97,14 +98,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="fileNo">
                                     <Form.Label>File No.</Form.Label>
                                     <Form.Control type="text" {...register('fileNo', { required: true })} />
-                                    {errors.fileNo && <span>This field is required</span>}
+                                    {errors.fileNo && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="mblNo">
                                     <Form.Label>MB/L No.</Form.Label>
                                     <Form.Control type="text" {...register('mblNo', { required: true })} />
-                                    {errors.mblNo && <span>This field is required</span>}
+                                    {errors.mblNo && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -113,14 +114,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="quotationNo">
                                     <Form.Label>Quotation No.</Form.Label>
                                     <Form.Control type="text" {...register('quotationNo', { required: true })} />
-                                    {errors.quotationNo && <span>This field is required</span>}
+                                    {errors.quotationNo && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="consignee">
                                     <Form.Label>Consignee</Form.Label>
                                     <Form.Control type="text" {...register('consignee', { required: true })} />
-                                    {errors.consignee && <span>This field is required</span>}
+                                    {errors.consignee && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -129,7 +130,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="postDate">
                                     <Form.Label>Post Date</Form.Label>
                                     <Form.Control type="date" {...register('postDate', { required: true })} />
-                                    {errors.postDate && <span>This field is required</span>}
+                                    {errors.postDate && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
@@ -142,7 +143,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.office && <span>This field is required</span>}
+                                    {errors.office && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -157,7 +158,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.customer && <span>This field is required</span>}
+                                    {errors.customer && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
@@ -170,7 +171,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.trucker && <span>This field is required</span>}
+                                    {errors.trucker && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -179,14 +180,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="vesselFlightNo">
                                     <Form.Label>Vessel/Flight No.</Form.Label>
                                     <Form.Control type="text" {...register('vesselFlightNo', { required: true })} />
-                                    {errors.vesselFlightNo && <span>This field is required</span>}
+                                    {errors.vesselFlightNo && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="customerRefNo">
                                     <Form.Label>Customer Ref No.</Form.Label>
                                     <Form.Control type="text" {...register('customerRefNo', { required: true })} />
-                                    {errors.customerRefNo && <span>This field is required</span>}
+                                    {errors.customerRefNo && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -195,14 +196,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="billTo">
                                     <Form.Label>Bill To</Form.Label>
                                     <Form.Control type="text" {...register('billTo', { required: true })} />
-                                    {errors.billTo && <span>This field is required</span>}
+                                    {errors.billTo && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="type">
                                     <Form.Label>Type</Form.Label>
                                     <Form.Control disabled type="text" {...register('type', { required: true })} />
-                                    {errors.type && <span>This field is required</span>}
+                                    {errors.type && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -217,14 +218,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.shipType && <span>This field is required</span>}
+                                    {errors.shipType && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="carrierBkgNo">
                                     <Form.Label>Carrier Bkg No.</Form.Label>
                                     <Form.Control type="text" {...register('carrierBkgNo', { required: true })} />
-                                    {errors.carrierBkgNo && <span>This field is required</span>}
+                                    {errors.carrierBkgNo && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -239,7 +240,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.shipper && <span>This field is required</span>}
+                                    {errors.shipper && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
@@ -252,7 +253,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.sales && <span>This field is required</span>}
+                                    {errors.sales && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -267,7 +268,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.portOfLoading && <span>This field is required</span>}
+                                    {errors.portOfLoading && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
@@ -280,7 +281,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.portOfDischarge && <span>This field is required</span>}
+                                    {errors.portOfDischarge && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -295,14 +296,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.finalDestination && <span>This field is required</span>}
+                                    {errors.finalDestination && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="freightPickup">
                                     <Form.Label>Freight Pickup</Form.Label>
                                     <Form.Control type="date" {...register('freightPickup', { required: true })} />
-                                    {errors.freightPickup && <span>This field is required</span>}
+                                    {errors.freightPickup && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -311,14 +312,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="etd">
                                     <Form.Label>ETD</Form.Label>
                                     <Form.Control type="date" {...register('etd', { required: true })} />
-                                    {errors.etd && <span>This field is required</span>}
+                                    {errors.etd && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="finalEta">
                                     <Form.Label>Final ETA</Form.Label>
                                     <Form.Control type="date" {...register('finalEta', { required: true })} />
-                                    {errors.finalEta && <span>This field is required</span>}
+                                    {errors.finalEta && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -327,14 +328,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="eta">
                                     <Form.Label>ETA</Form.Label>
                                     <Form.Control type="date" {...register('eta', { required: true })} />
-                                    {errors.eta && <span>This field is required</span>}
+                                    {errors.eta && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="emptyPickup">
                                     <Form.Label>Empty Pickup</Form.Label>
                                     <Form.Control type="date" {...register('emptyPickup', { required: true })} />
-                                    {errors.emptyPickup && <span>This field is required</span>}
+                                    {errors.emptyPickup && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -349,14 +350,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.deliveryTo && <span>This field is required</span>}
+                                    {errors.deliveryTo && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="emptyReturn">
                                     <Form.Label>Empty Return</Form.Label>
                                     <Form.Control type="date" {...register('emptyReturn', { required: true })} />
-                                    {errors.emptyReturn && <span>This field is required</span>}
+                                    {errors.emptyReturn && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -371,14 +372,14 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                             </option>
                                         ))}
                                     </Form.Control>
-                                    {errors.packageType && <span>This field is required</span>}
+                                    {errors.packageType && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
                                 <Form.Group controlId="packageWeight">
                                     <Form.Label>Package Weight</Form.Label>
                                     <Form.Control type="number" {...register('packageWeight', { required: true })} />
-                                    {errors.packageWeight && <span>This field is required</span>}
+                                    {errors.packageWeight && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -387,7 +388,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="measurement">
                                     <Form.Label>Measurement</Form.Label>
                                     <Form.Control type="text" {...register('measurement', { required: true })} />
-                                    {errors.measurement && <span>This field is required</span>}
+                                    {errors.measurement && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                             <Col md={12} lg={6} className='mt-3'>
@@ -402,7 +403,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                                 <Form.Group controlId="estimatedDeliveryDate">
                                     <Form.Label>Estimated Delivery Date</Form.Label>
                                     <Form.Control type="date" {...register('estimatedDeliveryDate', { required: true })} />
-                                    {errors.estimatedDeliveryDate && <span>This field is required</span>}
+                                    {errors.estimatedDeliveryDate && <span className="text-red-500 text-sm mt-2">This field is required</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -417,7 +418,8 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
                     </Form>
                 </CardBody>
             </Card>
-        </Container>
+        {/* </Container> */}
+        </>
     );
 };
 
