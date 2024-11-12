@@ -89,7 +89,7 @@ const NewShipment = ({ theme, selectedShipment ,onSubmitChanges,onCancelNewShipm
         <>
             <Card data-bs-theme={theme}>
                 <CardHeader className='text-center'>
-                    <h4>{getValues("shipmentId") == '0'?'New':'Edit'}&nbsp;Shipment</h4>
+                    <span><b>{getValues("shipmentId") == '0'?'New':'Edit'}&nbsp;Shipment</b></span>
                 </CardHeader>
                 <CardBody>
                     <Form onSubmit={handleSubmit(onSubmit)}>

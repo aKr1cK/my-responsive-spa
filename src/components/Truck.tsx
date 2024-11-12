@@ -93,7 +93,7 @@ const Truck = ({ theme }: any) => {
             let breadCrumHeight = Math.max(document.getElementsByClassName('breadcrum')[0].clientHeight || 0);
             let buttonGrpHeight = Math.max(document.getElementsByClassName('buttonGrp')[0].clientHeight || 0);
             let footerHeight = Math.max(document.getElementsByTagName('footer')[0].clientHeight || 0);
-            let gridHeight = vh - headerHeight - breadCrumHeight - buttonGrpHeight - footerHeight - 2;
+            let gridHeight = vh - headerHeight - breadCrumHeight - buttonGrpHeight - footerHeight - 52;
             return (gridHeight>120) ? gridHeight : 120;
         } catch (e) {
             //console.log(e);
@@ -125,7 +125,7 @@ const Truck = ({ theme }: any) => {
                             </ButtonGroup>}
                         </Col>
                         <Col></Col>
-                        {(activeTab == 'Shipment List') && <Col xs={5} lg={2} sm={4} className='align-content-center'>{<Form.Check type="switch" id="custom-switch" label="My Shipment" checked={isManual} onChange={handleManualToggle} />}</Col>}
+                        {(activeTab == 'Shipment List') && <Col xs={5} lg={2} sm={4} className='align-content-center'>{<Form.Check type="switch" id="custom-switch" label="My Shipments" checked={isManual} onChange={handleManualToggle} />}</Col>}
                     </Row>
                     {activeTab == 'Shipment List' && <>
                         <div className={theme == "dark" ? "ag-theme-alpine-dark pt-2" : "ag-theme-alpine pt-2"} style={{ height: getGridHeight() }}>
